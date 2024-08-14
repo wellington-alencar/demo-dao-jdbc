@@ -5,10 +5,13 @@ import model.dao.SellerDao;
 import model.entities.Department;
 import model.entities.Seller;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class Program {
     public static void main(String[] args) {
+        Locale.setDefault(Locale.US);
         SellerDao sellerDao = DaoFactory.createSellerDao();
 
 
@@ -27,5 +30,9 @@ public class Program {
         for (Seller obj: list1) {
             System.out.println(obj);
         }
+        System.out.println("\n=== Test 4: Seller Insert===");
+        Seller obj = new Seller(null, "Greg", "greg@gmail.com", new Date(), 4000.00, new Department(2, null));
+        sellerDao.insert(obj);
+        System.out.println("Inserted! New id = " + obj.getId());
     }
 }
